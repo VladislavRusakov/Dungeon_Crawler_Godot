@@ -26,6 +26,7 @@ const MAX_ACTIONS_REMEMBER = 3
 @onready var compas = $Compas
 
 @export var inventory_data: InventoryData
+@onready var inventory_interface = $UI/InventoryInterface
 
 
 var tween
@@ -35,6 +36,7 @@ var is_bump_locked := false
 
 func _ready():
 	add_to_group("player")
+	inventory_interface.set_player_inventory_data(inventory_data)
 
 func play_step_sound():
 	# plays random footstep sound

@@ -9,7 +9,7 @@ func _ready() -> void:
 	player.toggle_inventory.connect(toggle_inventory_interface)
 
 
-func set_player_inventory(inventory_data: InventoryData) -> void:
+func set_player_inventory_data(inventory_data: InventoryData) -> void:
 	inventory_data.inventory_interact.connect(on_inventory_interact)
 	player_inventory.set_inventory_data(inventory_data)
 	
