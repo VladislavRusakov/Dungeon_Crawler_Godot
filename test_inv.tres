@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="InventoryData" load_steps=9 format=3 uid="uid://ctgwx4rmkus64"]
+[gd_resource type="Resource" script_class="InventoryData" load_steps=10 format=3 uid="uid://ctgwx4rmkus64"]
 
 [ext_resource type="Script" path="res://inventory/inventory_data.gd" id="1_kjb1r"]
 [ext_resource type="Resource" uid="uid://bi8whl5fr55ja" path="res://item/items/cave_root.tres" id="2_dr1g3"]
@@ -21,6 +21,11 @@ script = ExtResource("3_ng85s")
 item_data = ExtResource("2_dr1g3")
 quantity = 4
 
+[sub_resource type="Resource" id="Resource_kjrw8"]
+script = ExtResource("3_ng85s")
+item_data = ExtResource("2_dr1g3")
+quantity = 6
+
 [resource]
 script = ExtResource("1_kjb1r")
-slot_datas = Array[ExtResource("3_ng85s")]([SubResource("Resource_ppu2b"), SubResource("Resource_aj7tk"), SubResource("Resource_b6w6f"), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null])
+slot_datas = Array[ExtResource("3_ng85s")]([SubResource("Resource_ppu2b"), SubResource("Resource_aj7tk"), SubResource("Resource_b6w6f"), SubResource("Resource_kjrw8"), null, null, null, null, null, null, null, null, null, null, null, null, null, null])

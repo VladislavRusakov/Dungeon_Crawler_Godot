@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://b6n3jg6w3xlkv"]
+[gd_scene load_steps=28 format=3 uid="uid://b6n3jg6w3xlkv"]
 
 [ext_resource type="Script" path="res://scenes/player/Scripts/player.gd" id="1_24k14"]
 [ext_resource type="Script" path="res://scenes/player/Scripts/CamPivot.gd" id="2_cm0ir"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cwugbjvdx2mor" path="res://scenes/UI/pause_menu.tscn" id="11_7354w"]
 [ext_resource type="PackedScene" uid="uid://csu7cgsx8ifbh" path="res://inventory/inventory.tscn" id="12_ra1xp"]
 [ext_resource type="Script" path="res://inventory/Scripts/inventory_interface.gd" id="13_si50g"]
+[ext_resource type="PackedScene" uid="uid://h7ipp3vu3hm2" path="res://inventory/slot.tscn" id="15_rgd12"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lwdc5"]
 shading_mode = 0
@@ -261,3 +262,9 @@ offset_top = 10.0
 offset_right = 50.0
 offset_bottom = 50.0
 metadata/_edit_use_anchors_ = true
+
+[node name="GrabbedSlot" parent="UI/InventoryInterface" instance=ExtResource("15_rgd12")]
+visible = false
+modulate = Color(1, 1, 1, 0.501961)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
