@@ -1,0 +1,260 @@
+[gd_scene load_steps=27 format=3 uid="uid://b6n3jg6w3xlkv"]
+
+[ext_resource type="Script" path="res://scenes/player/Scripts/player.gd" id="1_24k14"]
+[ext_resource type="Script" path="res://scenes/player/Scripts/CamPivot.gd" id="2_cm0ir"]
+[ext_resource type="Resource" uid="uid://ctgwx4rmkus64" path="res://test_inv.tres" id="2_vlkgj"]
+[ext_resource type="Script" path="res://scenes/player/Scripts/Camera.gd" id="3_ryq3c"]
+[ext_resource type="Script" path="res://scenes/player/Scripts/PlayerLight.gd" id="4_b3xpe"]
+[ext_resource type="AudioStream" uid="uid://cc6v0h7tlchw4" path="res://sounds/used/movement_fail.mp3" id="5_fx61u"]
+[ext_resource type="AudioStream" uid="uid://cmu5dr3dw2cwj" path="res://sounds/used/single_step1.mp3" id="6_l5age"]
+[ext_resource type="AudioStream" uid="uid://d0rf1a8dqotsy" path="res://sounds/used/single_step2.mp3" id="7_0d0jk"]
+[ext_resource type="AudioStream" uid="uid://cb6hw65duncyr" path="res://sounds/used/single_step3.mp3" id="8_igk6r"]
+[ext_resource type="AudioStream" uid="uid://b0tyus07868p5" path="res://sounds/used/walking_on_stairs.mp3" id="9_tetam"]
+[ext_resource type="PackedScene" uid="uid://cb6t2v5p4w4fx" path="res://scenes/UI/compas.tscn" id="10_ma0r3"]
+[ext_resource type="PackedScene" uid="uid://cwugbjvdx2mor" path="res://scenes/UI/pause_menu.tscn" id="11_7354w"]
+[ext_resource type="PackedScene" uid="uid://csu7cgsx8ifbh" path="res://inventory/inventory.tscn" id="12_ra1xp"]
+[ext_resource type="Script" path="res://inventory/Scripts/inventory_interface.gd" id="13_si50g"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lwdc5"]
+shading_mode = 0
+albedo_color = Color(0.309804, 0.545098, 0.0509804, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_nph10"]
+material = SubResource("StandardMaterial3D_lwdc5")
+size = Vector3(0.9, 1.02, 0.01)
+
+[sub_resource type="Animation" id="Animation_bjye3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CamPivot/Camera:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_2ibm0"]
+resource_name = "back_blocked"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CamPivot/Camera:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.05, 0.09), Vector3(0, -0.05, 0.09), Vector3(0, 0, 0.04), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ty0s0"]
+resource_name = "forward_blocked"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CamPivot/Camera:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.05, -0.09), Vector3(0, -0.05, -0.09), Vector3(0, 0, -0.04), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_gu341"]
+resource_name = "go_down_stairs"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CamPivot/Camera:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -1, -2), Vector3(0, -2, -4)]
+}
+
+[sub_resource type="Animation" id="Animation_tmfud"]
+resource_name = "go_down_stairs2"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CamPivot/Camera:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.5, 2.2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -2), Vector3(0, -1, -2), Vector3(0, -1, -4), Vector3(0, -2, -4)]
+}
+
+[sub_resource type="Animation" id="Animation_w6fob"]
+resource_name = "headbob"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CamPivot/Camera:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.05, 0), Vector3(0, -0.05, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_fv4ss"]
+resource_name = "left_blocked"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CamPivot/Camera:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.09, 0.05, 0), Vector3(-0.09, -0.05, 0), Vector3(-0.04, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_5rinn"]
+resource_name = "right_blocked"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CamPivot/Camera:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.09, 0.05, 0), Vector3(0.09, -0.05, 0), Vector3(0.04, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lt5yr"]
+_data = {
+"RESET": SubResource("Animation_bjye3"),
+"back_blocked": SubResource("Animation_2ibm0"),
+"forward_blocked": SubResource("Animation_ty0s0"),
+"go_down_stairs": SubResource("Animation_gu341"),
+"go_down_stairs2": SubResource("Animation_tmfud"),
+"headbob": SubResource("Animation_w6fob"),
+"left_blocked": SubResource("Animation_fv4ss"),
+"right_blocked": SubResource("Animation_5rinn")
+}
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_l3yxn"]
+
+[node name="Player" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -2)
+script = ExtResource("1_24k14")
+inventory_data = ExtResource("2_vlkgj")
+
+[node name="MapIcon" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -1, 0)
+layers = 524288
+cast_shadow = 0
+mesh = SubResource("PrismMesh_nph10")
+
+[node name="CamPivot" type="Node3D" parent="."]
+script = ExtResource("2_cm0ir")
+
+[node name="Camera" type="Camera3D" parent="CamPivot"]
+transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 0, 0, 0)
+cull_mask = 524287
+fov = 90.0
+script = ExtResource("3_ryq3c")
+
+[node name="PlayerLight" type="OmniLight3D" parent="."]
+light_color = Color(0.94902, 0.568627, 0.27451, 1)
+light_energy = 0.1
+script = ExtResource("4_b3xpe")
+
+[node name="FrontRay" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, -2)
+
+[node name="BackRay" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, 2)
+
+[node name="LeftRay" type="RayCast3D" parent="."]
+target_position = Vector3(-2, 0, 0)
+
+[node name="RightRay" type="RayCast3D" parent="."]
+target_position = Vector3(2, 0, 0)
+
+[node name="animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lt5yr")
+}
+
+[node name="sfx_movement_fail" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_fx61u")
+volume_db = -6.0
+bus = &"SFX"
+
+[node name="sfx_step1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_l5age")
+volume_db = -3.0
+bus = &"SFX"
+
+[node name="sfx_step2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_0d0jk")
+volume_db = -3.0
+bus = &"SFX"
+
+[node name="sfx_step3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_igk6r")
+volume_db = -3.0
+bus = &"SFX"
+
+[node name="sfx_stairs" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_tetam")
+bus = &"SFX"
+
+[node name="PlayerBody" type="CharacterBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerBody"]
+shape = SubResource("SphereShape3D_l3yxn")
+
+[node name="Compas" parent="." instance=ExtResource("10_ma0r3")]
+transform = Transform3D(1, 0, 0, 0, -0.992545, 0.121874, 0, -0.121874, -0.992545, 0, 0.08, 0.13)
+
+[node name="PauseMenu" parent="." instance=ExtResource("11_7354w")]
+mouse_filter = 2
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="InventoryInterface" type="Control" parent="UI"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("13_si50g")
+metadata/_edit_use_anchors_ = true
+
+[node name="PlayerInventory" parent="UI/InventoryInterface" instance=ExtResource("12_ra1xp")]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 50.0
+offset_bottom = 50.0
+metadata/_edit_use_anchors_ = true

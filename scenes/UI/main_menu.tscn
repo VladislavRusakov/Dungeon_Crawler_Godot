@@ -1,0 +1,465 @@
+[gd_scene load_steps=30 format=3 uid="uid://nm55qj0fjl84"]
+
+[ext_resource type="Script" path="res://scenes/UI/Scripts/main_menu.gd" id="1_bcmkl"]
+[ext_resource type="Script" path="res://addons/level_block/level_block_node.gd" id="1_mjqjn"]
+[ext_resource type="Material" uid="uid://c71yladfjhgud" path="res://addons/level_block/default_material.tres" id="2_5dhxv"]
+[ext_resource type="Texture2D" uid="uid://dul4gcwu55m0b" path="res://addons/level_block/example_tileset.png" id="3_efihc"]
+[ext_resource type="AudioStream" uid="uid://cynyxpi7b4nf6" path="res://sounds/used/torch.mp3" id="4_i3dec"]
+[ext_resource type="Script" path="res://scenes/Scripts/TorchLight.gd" id="5_5yxnh"]
+[ext_resource type="AudioStream" uid="uid://cury2pqgfkgfl" path="res://sounds/used/main_menu_music.mp3" id="8_20dkl"]
+[ext_resource type="Script" path="res://scenes/UI/Scripts/HSlider.gd" id="9_72epo"]
+[ext_resource type="FontFile" uid="uid://dkgheb166snod" path="res://fonts/firstorderexpand.ttf" id="9_iwqiu"]
+[ext_resource type="Script" path="res://scenes/UI/Scripts/SFXVolumeSlider.gd" id="10_76enx"]
+
+[sub_resource type="Environment" id="Environment_m3tpx"]
+background_mode = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vjnp8"]
+bg_color = Color(0.0313726, 0.0313726, 0.0313726, 1)
+border_color = Color(0.996078, 0.952941, 0.952941, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dq5uy"]
+bg_color = Color(0.219608, 0.219608, 0.219608, 1)
+border_color = Color(0.996078, 0.952941, 0.952941, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fjowu"]
+bg_color = Color(0.423529, 0.423529, 0.423529, 1)
+border_color = Color(0.996078, 0.952941, 0.952941, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+shadow_size = 5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bbgch"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ngki4"]
+bg_color = Color(0.0313726, 0.0313726, 0.0313726, 1)
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jr4ce"]
+bg_color = Color(0.219608, 0.219608, 0.219608, 1)
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7eafb"]
+bg_color = Color(0.423529, 0.423529, 0.423529, 1)
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_syqck"]
+bg_color = Color(0.333333, 0.333333, 0.333333, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7cd5u"]
+bg_color = Color(0.423529, 0.423529, 0.423529, 1)
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_28out"]
+bg_color = Color(0.0313726, 0.0313726, 0.0313726, 1)
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dx66q"]
+bg_color = Color(0.219608, 0.219608, 0.219608, 1)
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4u30l"]
+bg_color = Color(0.423529, 0.423529, 0.423529, 1)
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_fd7cv"]
+color = Color(0.643137, 0.545098, 0.0745098, 1)
+thickness = 3
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_cl2wx"]
+color = Color(0.643137, 0.545098, 0.0745098, 1)
+thickness = 3
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_xvd24"]
+color = Color(0.643137, 0.545098, 0.0745098, 1)
+thickness = 3
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_p6f1r"]
+color = Color(0.643137, 0.545098, 0.0745098, 1)
+thickness = 3
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_qd8qe"]
+color = Color(0.643137, 0.545098, 0.0745098, 1)
+thickness = 3
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_2s75u"]
+color = Color(0.890196, 0.901961, 0.996078, 1)
+thickness = 3
+
+[node name="main_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bcmkl")
+
+[node name="MainMenuScene" type="Node3D" parent="."]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="MainMenuScene"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="MainMenuScene/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+audio_listener_enable_3d = true
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="MainMenuScene/SubViewportContainer/SubViewport"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -7, 0, 0)
+fov = 90.0
+
+[node name="Room1" type="Node" parent="MainMenuScene"]
+
+[node name="LevelBlock1" type="Node3D" parent="MainMenuScene/Room1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -2)
+script = ExtResource("1_mjqjn")
+material = ExtResource("2_5dhxv")
+texture_sheet = ExtResource("3_efihc")
+north_face = 0
+east_face = 1
+west_face = 18
+top_face = 4
+bottom_face = 10
+flip_faces = true
+
+[node name="LevelBlock2" type="Node3D" parent="MainMenuScene/Room1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)
+script = ExtResource("1_mjqjn")
+material = ExtResource("2_5dhxv")
+texture_sheet = ExtResource("3_efihc")
+north_face = 1
+south_face = 0
+west_face = 3
+top_face = 4
+bottom_face = 10
+flip_faces = true
+
+[node name="LevelBlock3" type="Node3D" parent="MainMenuScene/Room1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 2)
+script = ExtResource("1_mjqjn")
+material = ExtResource("2_5dhxv")
+texture_sheet = ExtResource("3_efihc")
+east_face = 1
+west_face = 12
+top_face = 4
+bottom_face = 10
+flip_faces = true
+
+[node name="LevelBlock4" type="Node3D" parent="MainMenuScene/Room1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -2)
+script = ExtResource("1_mjqjn")
+material = ExtResource("2_5dhxv")
+texture_sheet = ExtResource("3_efihc")
+north_face = 6
+top_face = 4
+bottom_face = 10
+
+[node name="TorchSound" type="AudioStreamPlayer3D" parent="MainMenuScene/Room1/LevelBlock4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+stream = ExtResource("4_i3dec")
+attenuation_model = 2
+volume_db = -40.19
+autoplay = true
+max_distance = 8.0
+bus = &"SFX"
+
+[node name="TorchLight" type="OmniLight3D" parent="MainMenuScene/Room1/LevelBlock4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.9)
+light_color = Color(0.839216, 0.380392, 0, 1)
+distance_fade_enabled = true
+distance_fade_begin = 12.0
+distance_fade_shadow = 12.0
+distance_fade_length = 6.0
+omni_range = 4.0
+omni_shadow_mode = 0
+script = ExtResource("5_5yxnh")
+
+[node name="LevelBlock5" type="Node3D" parent="MainMenuScene/Room1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
+script = ExtResource("1_mjqjn")
+material = ExtResource("2_5dhxv")
+texture_sheet = ExtResource("3_efihc")
+top_face = 4
+bottom_face = 10
+
+[node name="LevelBlock6" type="Node3D" parent="MainMenuScene/Room1"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -5, 0, 2)
+script = ExtResource("1_mjqjn")
+material = ExtResource("2_5dhxv")
+texture_sheet = ExtResource("3_efihc")
+north_face = 6
+top_face = 4
+bottom_face = 10
+
+[node name="TorchSound" type="AudioStreamPlayer3D" parent="MainMenuScene/Room1/LevelBlock6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+stream = ExtResource("4_i3dec")
+attenuation_model = 2
+volume_db = -40.19
+autoplay = true
+max_distance = 8.0
+bus = &"SFX"
+
+[node name="TorchLight" type="OmniLight3D" parent="MainMenuScene/Room1/LevelBlock6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.9)
+light_color = Color(0.839216, 0.380392, 0, 1)
+distance_fade_enabled = true
+distance_fade_begin = 12.0
+distance_fade_shadow = 12.0
+distance_fade_length = 6.0
+omni_range = 4.0
+omni_shadow_mode = 0
+script = ExtResource("5_5yxnh")
+
+[node name="LevelBlock7" type="Node3D" parent="MainMenuScene/Room1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -2)
+script = ExtResource("1_mjqjn")
+material = ExtResource("2_5dhxv")
+texture_sheet = ExtResource("3_efihc")
+north_face = 0
+west_face = 0
+top_face = 4
+bottom_face = 10
+
+[node name="LevelBlock8" type="Node3D" parent="MainMenuScene/Room1"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7, 0, 0)
+script = ExtResource("1_mjqjn")
+material = ExtResource("2_5dhxv")
+texture_sheet = ExtResource("3_efihc")
+north_face = 6
+top_face = 4
+bottom_face = 10
+
+[node name="TorchSound" type="AudioStreamPlayer3D" parent="MainMenuScene/Room1/LevelBlock8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+stream = ExtResource("4_i3dec")
+attenuation_model = 2
+volume_db = -40.19
+autoplay = true
+max_distance = 8.0
+bus = &"SFX"
+
+[node name="TorchLight" type="OmniLight3D" parent="MainMenuScene/Room1/LevelBlock8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.9)
+light_color = Color(0.839216, 0.380392, 0, 1)
+distance_fade_enabled = true
+distance_fade_begin = 12.0
+distance_fade_shadow = 12.0
+distance_fade_length = 6.0
+omni_range = 3.0
+omni_shadow_mode = 0
+script = ExtResource("5_5yxnh")
+
+[node name="LevelBlock9" type="Node3D" parent="MainMenuScene/Room1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 2)
+script = ExtResource("1_mjqjn")
+material = ExtResource("2_5dhxv")
+texture_sheet = ExtResource("3_efihc")
+south_face = 0
+west_face = 0
+top_face = 4
+bottom_face = 10
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="MainMenuScene"]
+environment = SubResource("Environment_m3tpx")
+
+[node name="MainMenuMusic" type="AudioStreamPlayer" parent="MainMenuScene"]
+stream = ExtResource("8_20dkl")
+volume_db = -14.991
+autoplay = true
+bus = &"Music"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GameTitle" type="Label" parent="CanvasLayer"]
+offset_top = 34.0
+offset_right = 1152.0
+offset_bottom = 202.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = -3
+theme_override_constants/shadow_outline_size = 14
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("9_iwqiu")
+theme_override_font_sizes/font_size = 75
+text = "Dungeon
+Crawler"
+horizontal_alignment = 1
+
+[node name="MainButtons" type="VBoxContainer" parent="CanvasLayer"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -139.5
+offset_top = -77.0
+offset_right = 139.5
+offset_bottom = 141.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+
+[node name="new_game" type="Button" parent="CanvasLayer/MainButtons"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_vjnp8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dq5uy")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fjowu")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_bbgch")
+text = "New game"
+
+[node name="load_game" type="Button" parent="CanvasLayer/MainButtons"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_disabled_color = Color(0.168627, 0.168627, 0.168627, 1)
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_ngki4")
+theme_override_styles/hover = SubResource("StyleBoxFlat_jr4ce")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7eafb")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_syqck")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_bbgch")
+text = "Load game"
+
+[node name="options" type="Button" parent="CanvasLayer/MainButtons"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_ngki4")
+theme_override_styles/hover = SubResource("StyleBoxFlat_jr4ce")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7cd5u")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_bbgch")
+text = "Options
+"
+
+[node name="exit" type="Button" parent="CanvasLayer/MainButtons"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_28out")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dx66q")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4u30l")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_bbgch")
+text = "Exit"
+
+[node name="OptionsPanel" type="Panel" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -244.0
+offset_top = -113.0
+offset_right = 245.0
+offset_bottom = 182.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OptionsLabel" type="Label" parent="CanvasLayer/OptionsPanel"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 5.0
+offset_right = 486.0
+offset_bottom = 52.0
+theme_override_font_sizes/font_size = 31
+text = "Options"
+horizontal_alignment = 1
+
+[node name="MusicVolumeContainer" type="HBoxContainer" parent="CanvasLayer/OptionsPanel"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 75.0
+offset_right = 476.0
+offset_bottom = 119.0
+theme_override_constants/separation = 60
+
+[node name="MusicVolumeLabel" type="Label" parent="CanvasLayer/OptionsPanel/MusicVolumeContainer"]
+custom_minimum_size = Vector2(166, 30)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_stretch_ratio = 0.0
+theme_override_font_sizes/font_size = 25
+text = "Music volume"
+vertical_alignment = 2
+
+[node name="MusicVolumeSlider" type="HSlider" parent="CanvasLayer/OptionsPanel/MusicVolumeContainer"]
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/slider = SubResource("StyleBoxLine_fd7cv")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_cl2wx")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_xvd24")
+max_value = 1.0
+step = 0.05
+value = 1.0
+script = ExtResource("9_72epo")
+audio_bus_name = "Music"
+
+[node name="SFXVolumeContainer" type="HBoxContainer" parent="CanvasLayer/OptionsPanel"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 129.0
+offset_right = 476.0
+offset_bottom = 173.0
+theme_override_constants/separation = 60
+
+[node name="SFXVolumeLabel" type="Label" parent="CanvasLayer/OptionsPanel/SFXVolumeContainer"]
+custom_minimum_size = Vector2(166, 30)
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Effects"
+
+[node name="SFXVolumeSlider" type="HSlider" parent="CanvasLayer/OptionsPanel/SFXVolumeContainer"]
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/slider = SubResource("StyleBoxLine_p6f1r")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_qd8qe")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_2s75u")
+max_value = 1.0
+step = 0.05
+value = 1.0
+script = ExtResource("10_76enx")
+audio_bus_name = "SFX"
+
+[node name="back" type="Button" parent="CanvasLayer/OptionsPanel"]
+layout_mode = 0
+offset_left = 106.0
+offset_top = 247.0
+offset_right = 383.0
+offset_bottom = 291.0
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_28out")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dx66q")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4u30l")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_bbgch")
+text = "Back
+"
+
+[connection signal="pressed" from="CanvasLayer/MainButtons/new_game" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainButtons/load_game" to="." method="_on_load_game_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainButtons/options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainButtons/exit" to="." method="_on_exit_pressed"]
+[connection signal="value_changed" from="CanvasLayer/OptionsPanel/MusicVolumeContainer/MusicVolumeSlider" to="CanvasLayer/OptionsPanel/MusicVolumeContainer/MusicVolumeSlider" method="_on_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/OptionsPanel/SFXVolumeContainer/SFXVolumeSlider" to="CanvasLayer/OptionsPanel/SFXVolumeContainer/SFXVolumeSlider" method="_on_value_changed"]
+[connection signal="pressed" from="CanvasLayer/OptionsPanel/back" to="." method="_on_back_options_pressed"]

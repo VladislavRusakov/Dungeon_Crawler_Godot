@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://br41pvuf7wcku"]
+
+[ext_resource type="Script" path="res://item/item_data.gd" id="1_52aip"]
+[ext_resource type="Texture2D" uid="uid://i5koupijqsvi" path="res://item/Transparent Icons.png" id="2_ut40r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2505v"]
+atlas = ExtResource("2_ut40r")
+region = Rect2(32, 160, 32, 32)
+
+[resource]
+script = ExtResource("1_52aip")
+name = "Straight sword"
+description = "A nice double-edged sword."
+stackable = false
+texture = SubResource("AtlasTexture_2505v")

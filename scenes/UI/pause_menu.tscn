@@ -1,0 +1,271 @@
+[gd_scene load_steps=22 format=3 uid="uid://cwugbjvdx2mor"]
+
+[ext_resource type="Script" path="res://scenes/UI/Scripts/pause_menu.gd" id="1_mshm2"]
+[ext_resource type="Script" path="res://scenes/UI/Scripts/HSlider.gd" id="2_tf6xq"]
+[ext_resource type="Script" path="res://scenes/UI/Scripts/SFXVolumeSlider.gd" id="3_5icg0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lmm8a"]
+bg_color = Color(0.0313726, 0.0313726, 0.0313726, 1)
+border_color = Color(0.996078, 0.952941, 0.952941, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7n33q"]
+bg_color = Color(0.219608, 0.219608, 0.219608, 1)
+border_color = Color(0.996078, 0.952941, 0.952941, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yehue"]
+bg_color = Color(0.423529, 0.423529, 0.423529, 1)
+border_color = Color(0.996078, 0.952941, 0.952941, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+shadow_size = 5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wcplp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7a5qi"]
+bg_color = Color(0.0313726, 0.0313726, 0.0313726, 1)
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6pmhj"]
+bg_color = Color(0.219608, 0.219608, 0.219608, 1)
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lflee"]
+bg_color = Color(0.423529, 0.423529, 0.423529, 1)
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3mvtp"]
+bg_color = Color(0.333333, 0.333333, 0.333333, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oqr64"]
+bg_color = Color(0.423529, 0.423529, 0.423529, 1)
+shadow_size = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w13qn"]
+bg_color = Color(0.0313726, 0.0313726, 0.0313726, 1)
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tun2n"]
+bg_color = Color(0.219608, 0.219608, 0.219608, 1)
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_it0eb"]
+bg_color = Color(0.423529, 0.423529, 0.423529, 1)
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_hveou"]
+color = Color(0.643137, 0.545098, 0.0745098, 1)
+thickness = 3
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_fs74k"]
+color = Color(0.643137, 0.545098, 0.0745098, 1)
+thickness = 3
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_qtmiu"]
+color = Color(0.643137, 0.545098, 0.0745098, 1)
+thickness = 3
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_bmumt"]
+color = Color(0.643137, 0.545098, 0.0745098, 1)
+thickness = 3
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_6cngt"]
+color = Color(0.643137, 0.545098, 0.0745098, 1)
+thickness = 3
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_lrkr8"]
+color = Color(0.890196, 0.901961, 0.996078, 1)
+thickness = 3
+
+[node name="PauseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mshm2")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MainButtons" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -139.5
+offset_top = -77.0
+offset_right = 139.5
+offset_bottom = 141.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+
+[node name="save_game" type="Button" parent="CanvasLayer/MainButtons"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_lmm8a")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7n33q")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yehue")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wcplp")
+text = "Save game"
+
+[node name="load_game" type="Button" parent="CanvasLayer/MainButtons"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_disabled_color = Color(0.168627, 0.168627, 0.168627, 1)
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_7a5qi")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6pmhj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lflee")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_3mvtp")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wcplp")
+text = "Load game"
+
+[node name="options" type="Button" parent="CanvasLayer/MainButtons"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_7a5qi")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6pmhj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_oqr64")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wcplp")
+text = "Options
+"
+
+[node name="main_menu" type="Button" parent="CanvasLayer/MainButtons"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_7a5qi")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6pmhj")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_oqr64")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wcplp")
+text = "Main menu"
+
+[node name="exit" type="Button" parent="CanvasLayer/MainButtons"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_w13qn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tun2n")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_it0eb")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wcplp")
+text = "Exit game"
+
+[node name="OptionsPanel" type="Panel" parent="CanvasLayer"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -244.0
+offset_top = -113.0
+offset_right = 245.0
+offset_bottom = 182.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="OptionsLabel" type="Label" parent="CanvasLayer/OptionsPanel"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 5.0
+offset_right = 486.0
+offset_bottom = 52.0
+theme_override_font_sizes/font_size = 31
+text = "Options"
+horizontal_alignment = 1
+
+[node name="MusicVolumeContainer" type="HBoxContainer" parent="CanvasLayer/OptionsPanel"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 75.0
+offset_right = 476.0
+offset_bottom = 119.0
+theme_override_constants/separation = 60
+
+[node name="MusicVolumeLabel" type="Label" parent="CanvasLayer/OptionsPanel/MusicVolumeContainer"]
+custom_minimum_size = Vector2(166, 30)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_stretch_ratio = 0.0
+theme_override_font_sizes/font_size = 25
+text = "Music volume"
+vertical_alignment = 2
+
+[node name="MusicVolumeSlider" type="HSlider" parent="CanvasLayer/OptionsPanel/MusicVolumeContainer"]
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/slider = SubResource("StyleBoxLine_hveou")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_fs74k")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_qtmiu")
+max_value = 1.0
+step = 0.05
+value = 1.0
+script = ExtResource("2_tf6xq")
+audio_bus_name = "Music"
+
+[node name="SFXVolumeContainer" type="HBoxContainer" parent="CanvasLayer/OptionsPanel"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 129.0
+offset_right = 476.0
+offset_bottom = 173.0
+theme_override_constants/separation = 60
+
+[node name="SFXVolumeLabel" type="Label" parent="CanvasLayer/OptionsPanel/SFXVolumeContainer"]
+custom_minimum_size = Vector2(166, 30)
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Effects"
+
+[node name="SFXVolumeSlider" type="HSlider" parent="CanvasLayer/OptionsPanel/SFXVolumeContainer"]
+custom_minimum_size = Vector2(200, 30)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/slider = SubResource("StyleBoxLine_bmumt")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_6cngt")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_lrkr8")
+max_value = 1.0
+step = 0.05
+value = 1.0
+script = ExtResource("3_5icg0")
+audio_bus_name = "SFX"
+
+[node name="back" type="Button" parent="CanvasLayer/OptionsPanel"]
+layout_mode = 0
+offset_left = 106.0
+offset_top = 247.0
+offset_right = 383.0
+offset_bottom = 291.0
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_w13qn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_tun2n")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_it0eb")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_wcplp")
+text = "Back
+"
+
+[connection signal="pressed" from="CanvasLayer/MainButtons/save_game" to="." method="_on_save_game_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainButtons/load_game" to="." method="_on_load_game_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainButtons/options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainButtons/main_menu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainButtons/exit" to="." method="_on_exit_pressed"]
+[connection signal="value_changed" from="CanvasLayer/OptionsPanel/MusicVolumeContainer/MusicVolumeSlider" to="CanvasLayer/OptionsPanel/MusicVolumeContainer/MusicVolumeSlider" method="_on_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/OptionsPanel/SFXVolumeContainer/SFXVolumeSlider" to="CanvasLayer/OptionsPanel/SFXVolumeContainer/SFXVolumeSlider" method="_on_value_changed"]
+[connection signal="pressed" from="CanvasLayer/OptionsPanel/back" to="." method="_on_back_pressed"]

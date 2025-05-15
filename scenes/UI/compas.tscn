@@ -1,0 +1,174 @@
+[gd_scene load_steps=16 format=3 uid="uid://cb6t2v5p4w4fx"]
+
+[ext_resource type="Script" path="res://scenes/UI/Scripts/compas.gd" id="1_npffd"]
+[ext_resource type="Texture2D" uid="uid://bffmlew8lm1ns" path="res://addons/level_block/compas2.png" id="2_bpmci"]
+[ext_resource type="AudioStream" uid="uid://b0aqr7iryujqx" path="res://sounds/used/inventory_grab.mp3" id="3_pkee3"]
+[ext_resource type="AudioStream" uid="uid://et8s6b24jk61" path="res://sounds/used/inventory_put.mp3" id="4_3v12k"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_208hq"]
+albedo_color = Color(0.721569, 1, 1, 1)
+metallic = 0.8
+metallic_specular = 1.0
+metallic_texture_channel = 4
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_phhsr"]
+material = SubResource("StandardMaterial3D_208hq")
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.01
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8sffr"]
+albedo_color = Color(0.807843, 0.803922, 0, 1)
+metallic = 1.0
+
+[sub_resource type="TorusMesh" id="TorusMesh_guevm"]
+material = SubResource("StandardMaterial3D_8sffr")
+inner_radius = 1.2
+outer_radius = 1.08
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lgq2t"]
+albedo_color = Color(0.52549, 0.52549, 0.52549, 1)
+metallic = 1.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_nhbjo"]
+material = SubResource("StandardMaterial3D_lgq2t")
+top_radius = 0.01
+bottom_radius = 0.01
+height = 0.01
+
+[sub_resource type="PrismMesh" id="PrismMesh_fmjul"]
+size = Vector3(0.025, 0.07, 0.001)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x7pfc"]
+albedo_color = Color(0.756863, 0.752941, 0, 1)
+metallic = 1.0
+
+[sub_resource type="Animation" id="Animation_njcxd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.08, 0.13)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(3.26377, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_sy5dv"]
+resource_name = "draw"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.5, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.08, 0.13), Vector3(0, 0.08, -0.015), Vector3(0, 0.08, -0.11), Vector3(0, -0.11, -0.11), Vector3(0, -0.22, -0.11), Vector3(0, -0.195, -0.11)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.5, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(3.26377, 0, 0), Vector3(3.26377, 0, 0), Vector3(2.17294, 0, 0), Vector3(1.28282, 0, 0), Vector3(1.28282, 0, 0), Vector3(1.28282, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.5, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, true, true, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_baxfw"]
+_data = {
+"RESET": SubResource("Animation_njcxd"),
+"draw": SubResource("Animation_sy5dv")
+}
+
+[node name="Compas" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, -0.992545, 0.121874, 0, -0.121874, -0.992545, 0, 0.08, 0.13)
+visible = false
+script = ExtResource("1_npffd")
+
+[node name="CompasBody" type="MeshInstance3D" parent="."]
+layers = 2
+mesh = SubResource("CylinderMesh_phhsr")
+
+[node name="CompasSideBody" type="MeshInstance3D" parent="CompasBody"]
+transform = Transform3D(0.09, 0, 0, 0, 0.03, 0, 0, 0, 0.09, 0, 0.007, 0)
+layers = 2
+mesh = SubResource("TorusMesh_guevm")
+
+[node name="CenterMesh" type="MeshInstance3D" parent="CompasBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.006, 0)
+layers = 2
+mesh = SubResource("CylinderMesh_nhbjo")
+
+[node name="PointerMesh" type="MeshInstance3D" parent="CompasBody/CenterMesh"]
+transform = Transform3D(-1, -8.74228e-08, 3.82137e-15, 0, -4.37114e-08, -1, 8.74228e-08, -1, 4.37114e-08, 0, 0.005, -0.035)
+layers = 2
+mesh = SubResource("PrismMesh_fmjul")
+surface_material_override/0 = SubResource("StandardMaterial3D_x7pfc")
+
+[node name="CompassDisc" type="Sprite3D" parent="CompasBody"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.01, 0)
+layers = 2
+pixel_size = 0.0005
+texture = ExtResource("2_bpmci")
+
+[node name="animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_baxfw")
+}
+
+[node name="sfx_compass_out" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_pkee3")
+volume_db = -5.0
+bus = &"SFX"
+
+[node name="sfx_compass_back" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_3v12k")
+volume_db = -5.0
+bus = &"SFX"
