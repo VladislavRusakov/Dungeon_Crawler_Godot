@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bn42e1ap7mw63"]
+[gd_scene load_steps=29 format=3 uid="uid://bn42e1ap7mw63"]
 
 [ext_resource type="Script" path="res://addons/level_block/level_block_node.gd" id="1_kie6x"]
 [ext_resource type="AudioStream" uid="uid://cgcrh8w4iv8ig" path="res://sounds/used/embient_main.mp3" id="1_ycj2g"]
@@ -17,6 +17,9 @@
 [ext_resource type="Script" path="res://scenes/Scripts/Hatch.gd" id="12_qx4xe"]
 [ext_resource type="Script" path="res://scenes/Scripts/button2.gd" id="13_3rtd0"]
 [ext_resource type="AudioStream" uid="uid://cec0u25irflpo" path="res://sounds/used/stone_button_push.mp3" id="14_tsws4"]
+[ext_resource type="PackedScene" uid="uid://cr8nbxw3rfokd" path="res://inventory/pickup/pick_up.tscn" id="18_dmate"]
+[ext_resource type="Resource" uid="uid://br41pvuf7wcku" path="res://item/items/straight_sword.tres" id="19_ehllm"]
+[ext_resource type="Script" path="res://inventory/slot_data.gd" id="20_iyfxw"]
 
 [sub_resource type="Environment" id="Environment_yh1rn"]
 background_mode = 1
@@ -70,6 +73,11 @@ _data = {
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_25cea"]
+
+[sub_resource type="Resource" id="Resource_p0oqq"]
+script = ExtResource("20_iyfxw")
+item_data = ExtResource("19_ehllm")
+quantity = 1
 
 [node name="Level" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 2)
@@ -1117,3 +1125,7 @@ texture_sheet = ExtResource("3_ogwbd")
 south_face = 0
 west_face = 0
 top_face = 15
+
+[node name="PickUp" parent="." instance=ExtResource("18_dmate")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -7.56667, 0, -2)
+slot_data = SubResource("Resource_p0oqq")
