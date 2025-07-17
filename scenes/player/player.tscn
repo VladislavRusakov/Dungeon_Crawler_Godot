@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://b6n3jg6w3xlkv"]
+[gd_scene load_steps=29 format=3 uid="uid://b6n3jg6w3xlkv"]
 
 [ext_resource type="Script" path="res://scenes/player/Scripts/player.gd" id="1_24k14"]
 [ext_resource type="Script" path="res://scenes/player/Scripts/CamPivot.gd" id="2_cm0ir"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://cb6hw65duncyr" path="res://sounds/used/single_step3.mp3" id="8_igk6r"]
 [ext_resource type="AudioStream" uid="uid://b0tyus07868p5" path="res://sounds/used/walking_on_stairs.mp3" id="9_tetam"]
 [ext_resource type="PackedScene" uid="uid://cb6t2v5p4w4fx" path="res://scenes/UI/compas.tscn" id="10_ma0r3"]
+[ext_resource type="AudioStream" uid="uid://cfdlvytw680o0" path="res://sounds/used/pickup1.mp3" id="11_1pxhu"]
 [ext_resource type="PackedScene" uid="uid://cwugbjvdx2mor" path="res://scenes/UI/pause_menu.tscn" id="11_7354w"]
 [ext_resource type="PackedScene" uid="uid://csu7cgsx8ifbh" path="res://inventory/inventory.tscn" id="12_ra1xp"]
 [ext_resource type="Script" path="res://inventory/Scripts/inventory_interface.gd" id="13_si50g"]
@@ -178,7 +179,8 @@ script = ExtResource("2_cm0ir")
 [node name="Camera" type="Camera3D" parent="CamPivot"]
 transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 0, 0, 0)
 cull_mask = 524287
-fov = 90.0
+fov = 105.0
+near = 0.2
 script = ExtResource("3_ryq3c")
 
 [node name="PlayerLight" type="OmniLight3D" parent="."]
@@ -225,6 +227,10 @@ bus = &"SFX"
 
 [node name="sfx_stairs" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_tetam")
+bus = &"SFX"
+
+[node name="sfx_pickup" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_1pxhu")
 bus = &"SFX"
 
 [node name="PlayerBody" type="CharacterBody3D" parent="."]

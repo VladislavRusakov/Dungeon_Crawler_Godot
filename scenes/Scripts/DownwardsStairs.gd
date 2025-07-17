@@ -12,8 +12,7 @@ func _process(delta):
 
 
 func _on_body_entered(body):
-	if body.name == "PlayerBody":
-		var player = body.get_parent()
-		print(player)
+	var player = body.get_parent()
+	if player is Player:
 		player.animation.play("go_down_stairs2")
 		player.sfx_stairs.play()

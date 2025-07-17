@@ -1,4 +1,5 @@
 extends Node3D
+class_name Player
 
 signal toggle_inventory()
 
@@ -16,6 +17,7 @@ const MAX_ACTIONS_REMEMBER = 3
 @onready var sfx_step_3 = $sfx_step3
 @onready var sfx_movement_fail = $sfx_movement_fail
 @onready var sfx_stairs = $sfx_stairs
+@onready var sfx_pickup = $sfx_pickup
 
 @onready var map = $"../Map"
 @onready var sfx_map_open = $"../Map/sfx_map_open"
