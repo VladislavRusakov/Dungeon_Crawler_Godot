@@ -39,4 +39,3 @@ func on_interact():
 
 	parent_block.east_face = original_face
 	can_press = true
-

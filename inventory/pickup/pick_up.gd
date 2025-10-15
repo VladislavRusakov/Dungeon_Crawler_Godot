@@ -3,7 +3,6 @@ extends RigidBody3D
 @export var slot_data: SlotData
 
 @onready var sprite_3d: Sprite3D = $Sprite3D
-@onready var sfx_pickup: AudioStreamPlayer = $sfx_pickup
 
 
 func _ready() -> void:

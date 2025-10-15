@@ -1,42 +1,36 @@
-# Godot-specific
+# Godot-specific files
 .import/
-export.cfg
-export_presets.cfg
+.export/
+.export_presets.cfg
 .godot/
-*.godot/tmp/*
-*.godot/imported/*
 
-# OS-specific
+# Imported assets
+*.import
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# OS-specific files
 .DS_Store
 Thumbs.db
 desktop.ini
 
-# Editor files
-*.converted.*
-*.log
-*.tmp
+# Editor/IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
 
-# Compiled files
-*.exe
-*.dll
-*.so
-*.dylib
-*.class
-*.pyc
-*.pyo
-*.pyd
+# Backup files
+*~
+*.bak
+*.old
 
-# Godot Mono (C#) support
-.mono/
-*.csproj
-*.sln
-*.user
-*.pidb
-*.dll
-*.mdb
+# Build / export outputs
+bin/
+build/
+dist/
 
-# User project settings
-project.godot.lock
-
-# Local-only sounds folder (custom)
-sounds/base/
+.gitignore

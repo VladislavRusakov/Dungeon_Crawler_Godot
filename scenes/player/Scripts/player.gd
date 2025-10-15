@@ -36,15 +36,18 @@ var move_queue: Array = []
 var is_moving := false
 var is_bump_locked := false
 
+
 func _ready():
 	add_to_group("player")
 	inventory_interface.set_player_inventory_data(inventory_data)
+
 
 func play_step_sound():
 	# plays random footstep sound
 	var step_sounds = [sfx_step_1, sfx_step_2, sfx_step_3]
 	var sound = step_sounds[randi() % step_sounds.size()]
 	sound.play()
+
 
 func _physics_process(_delta):
 	if is_moving:
@@ -57,6 +60,7 @@ func _physics_process(_delta):
 		return
 
 	_check_and_move()
+
 
 func _store_direction_input():
 	if Input.is_action_just_pressed("forward"):
@@ -72,10 +76,12 @@ func _store_direction_input():
 	elif Input.is_action_just_pressed("rotate_right"):
 		_enqueue_action("rotate_right")
 
+
 func _enqueue_action(action: String):
 	if move_queue.size() >= MAX_ACTIONS_REMEMBER:
 		move_queue.pop_front()  # Remove the oldest action
 	move_queue.append(action)
+
 
 func _check_and_move():
 	if Input.is_action_just_pressed("forward"):
@@ -90,6 +96,7 @@ func _check_and_move():
 		_start_movement("rotate_left")
 	elif Input.is_action_just_pressed("rotate_right"):
 		_start_movement("rotate_right")
+
 
 func play_bump_feedback(direction: String):
 	if is_bump_locked:
@@ -108,9 +115,10 @@ func play_bump_feedback(direction: String):
 	
 	sfx_movement_fail.play()
 	
-	#The animation duration is tied to TRAVEL_TIME by hand
+	#The animation duration is tied to TRAVEL_TIME by han d
 	await get_tree().create_timer(TRAVEL_TIME + 1).timeout
 	is_bump_locked = false
+
 
 func _start_movement(direction: String):
 	is_moving = true
@@ -169,8 +177,10 @@ func _start_movement(direction: String):
 		# If no movement tween created, reset manually
 		is_moving = false
 
+
 func _on_movement_finished():
 	is_moving = false
+
 
 func _input(event):
 	if event.is_action_pressed("map"):
