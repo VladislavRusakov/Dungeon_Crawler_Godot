@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://bi8whl5fr55ja"]
 
-[ext_resource type="Script" path="res://item/item_data.gd" id="1_pi142"]
+[ext_resource type="Script" uid="uid://cbhtk7qsv8pnb" path="res://item/item_data.gd" id="1_pi142"]
 [ext_resource type="Texture2D" uid="uid://i5koupijqsvi" path="res://item/Transparent Icons.png" id="2_kxfao"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mtbnc"]

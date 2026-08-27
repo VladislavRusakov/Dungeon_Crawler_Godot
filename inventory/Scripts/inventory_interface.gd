@@ -4,6 +4,9 @@ signal drop_slot_data(slot_data: SlotData)
 
 var grabbed_slot_data: SlotData
 
+const PickUp = preload("res://inventory/pickup/pick_up.tscn")
+
+
 @onready var player_inventory: PanelContainer = $PlayerInventory
 @onready var grabbed_slot: PanelContainer = $GrabbedSlot
 @onready var player = $"../.."
@@ -68,12 +71,24 @@ func update_grabbed_slot() -> void:
 
 
 func _on_gui_input(event: InputEvent) -> void:
-	print("GUI input received")
 	if event is InputEventMouseButton \
 	and event.is_pressed() \
 	and grabbed_slot_data:
 
 		match event.button_index:
 			MOUSE_BUTTON_LEFT:
-				print("drop data")
 				drop_slot_data.emit(grabbed_slot_data)
+				grabbed_slot_data = null
+			MOUSE_BUTTON_RIGHT:
+				drop_slot_data.emit(grabbed_slot_data.create_single_slot_data())
+				if grabbed_slot_data.quantity < 1:
+					grabbed_slot_data = null
+				
+	update_grabbed_slot()
+
+
+func _on_drop_slot_data(slot_data: SlotData) -> void:
+	var pick_up = PickUp.instantiate()
+	pick_up.slot_data = slot_data
+	pick_up.position = player.get_drop_position()
+	add_child(pick_up)

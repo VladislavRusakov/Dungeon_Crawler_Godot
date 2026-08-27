@@ -30,6 +30,8 @@ const MAX_ACTIONS_REMEMBER = 3
 @export var inventory_data: InventoryData
 @onready var inventory_interface = $UI/InventoryInterface
 
+@onready var camera: Camera3D = $CamPivot/Camera
+
 
 var tween
 var move_queue: Array = []
@@ -202,3 +204,8 @@ func _input(event):
 
 	if event.is_action_pressed("inventory"):
 		toggle_inventory.emit()
+
+func get_drop_position() -> Vector3:
+	var direction = -camera.global_transform.basis.z
+	return camera.global_position + direction
+	
