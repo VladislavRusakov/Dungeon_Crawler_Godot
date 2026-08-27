@@ -240,6 +240,7 @@ shape = SubResource("SphereShape3D_l3yxn")
 
 [node name="Compas" parent="." instance=ExtResource("10_ma0r3")]
 transform = Transform3D(1, 0, 0, 0, -0.992545, 0.121874, 0, -0.121874, -0.992545, 0, 0.08, 0.13)
+visible = false
 
 [node name="PauseMenu" parent="." instance=ExtResource("11_7354w")]
 visible = false
