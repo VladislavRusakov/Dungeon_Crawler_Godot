@@ -1,25 +1,27 @@
-[gd_scene load_steps=29 format=3 uid="uid://bn42e1ap7mw63"]
+[gd_scene load_steps=32 format=3 uid="uid://bn42e1ap7mw63"]
 
-[ext_resource type="Script" path="res://addons/level_block/level_block_node.gd" id="1_kie6x"]
+[ext_resource type="Script" uid="uid://w2ocjdlf1nqf" path="res://addons/level_block/level_block_node.gd" id="1_kie6x"]
 [ext_resource type="AudioStream" uid="uid://cgcrh8w4iv8ig" path="res://sounds/used/embient_main.mp3" id="1_ycj2g"]
 [ext_resource type="AudioStream" uid="uid://dem5g04txrapc" path="res://sounds/used/map_open.mp3" id="2_1s3gi"]
 [ext_resource type="Material" uid="uid://c71yladfjhgud" path="res://addons/level_block/default_material.tres" id="2_jhrrd"]
 [ext_resource type="Texture2D" uid="uid://dul4gcwu55m0b" path="res://addons/level_block/example_tileset.png" id="3_ogwbd"]
 [ext_resource type="AudioStream" uid="uid://dbfpxiuvn4y0r" path="res://sounds/used/map_close.mp3" id="3_ur620"]
-[ext_resource type="PackedScene" uid="uid://b6n3jg6w3xlkv" path="res://scenes/player/player.tscn" id="4_qyf8f"]
+[ext_resource type="PackedScene" uid="uid://b6n3jg6w3xlkv" path="res://player/player.tscn" id="4_qyf8f"]
 [ext_resource type="AudioStream" uid="uid://cynyxpi7b4nf6" path="res://sounds/used/torch.mp3" id="6_kuf5x"]
-[ext_resource type="Script" path="res://scenes/Scripts/TorchLight.gd" id="7_428ga"]
+[ext_resource type="Script" uid="uid://bccb8q5eq8e57" path="res://scenes/Scripts/TorchLight.gd" id="7_428ga"]
 [ext_resource type="AudioStream" uid="uid://dkxau3svj3mfo" path="res://sounds/used/dungeon-air-6983.mp3" id="8_5bwk6"]
 [ext_resource type="AudioStream" uid="uid://dge68jrse4fgo" path="res://sounds/used/droplets-in-a-cave-6785.mp3" id="9_r55j6"]
-[ext_resource type="Script" path="res://scenes/Scripts/button.gd" id="10_5ue25"]
+[ext_resource type="Script" uid="uid://dwk0nplgsh5x0" path="res://scenes/Scripts/button.gd" id="10_5ue25"]
 [ext_resource type="PackedScene" uid="uid://d3c0a4bk31tct" path="res://scenes/secret_wall.tscn" id="11_nrkm7"]
 [ext_resource type="AudioStream" uid="uid://dmah0mie8m36y" path="res://sounds/used/hatch_opening.mp3" id="12_7cyb0"]
-[ext_resource type="Script" path="res://scenes/Scripts/Hatch.gd" id="12_qx4xe"]
-[ext_resource type="Script" path="res://scenes/Scripts/button2.gd" id="13_3rtd0"]
+[ext_resource type="Script" uid="uid://dtok12vnc7cci" path="res://scenes/Scripts/Hatch.gd" id="12_qx4xe"]
+[ext_resource type="Script" uid="uid://b6dif4at2ysbs" path="res://scenes/Scripts/button2.gd" id="13_3rtd0"]
 [ext_resource type="AudioStream" uid="uid://cec0u25irflpo" path="res://sounds/used/stone_button_push.mp3" id="14_tsws4"]
 [ext_resource type="PackedScene" uid="uid://cr8nbxw3rfokd" path="res://inventory/pickup/pick_up.tscn" id="18_dmate"]
 [ext_resource type="Resource" uid="uid://br41pvuf7wcku" path="res://item/items/straight_sword.tres" id="19_ed51h"]
-[ext_resource type="Script" path="res://inventory/slot_data.gd" id="20_iyfxw"]
+[ext_resource type="Script" uid="uid://c6iv8qbcykk5k" path="res://inventory/slot_data.gd" id="20_iyfxw"]
+[ext_resource type="Script" uid="uid://3unih1565d32" path="res://scenes/Scripts/DownwardsStairs.gd" id="21_dqba7"]
+[ext_resource type="PackedScene" uid="uid://clqbwa3n2f6s6" path="res://scenes/levels/Level2.tscn" id="22_usw5k"]
 
 [sub_resource type="Environment" id="Environment_yh1rn"]
 background_mode = 1
@@ -36,7 +38,6 @@ background_mode = 1
 [sub_resource type="Resource" id="Resource_p0oqq"]
 script = ExtResource("20_iyfxw")
 item_data = ExtResource("19_ed51h")
-quantity = 1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_k57ar"]
 
@@ -73,17 +74,19 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yv76x"]
 _data = {
-"RESET": SubResource("Animation_dtaxv"),
-"hatch_open": SubResource("Animation_qww6f")
+&"RESET": SubResource("Animation_dtaxv"),
+&"hatch_open": SubResource("Animation_qww6f")
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_25cea"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_inp66"]
 
 [node name="Level" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 2)
 
 [node name="Player" parent="." instance=ExtResource("4_qyf8f")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -10, 0, -2)
+transform = Transform3D(1.3113417e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113417e-07, 0, 0, 10)
 
 [node name="Map" type="SubViewportContainer" parent="."]
 visible = false
@@ -528,7 +531,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 12)
 script = ExtResource("1_kie6x")
 material = ExtResource("2_jhrrd")
 texture_sheet = ExtResource("3_ogwbd")
-west_face = 0
 bottom_face = 5
 
 [node name="LevelBlock22" type="Node3D" parent="High_room1/Ground"]
@@ -626,7 +628,7 @@ bottom_face = 3
 
 [node name="HatchAnimation" type="AnimationPlayer" parent="High_room1/Ground/LevelBlock28/Hatch1"]
 libraries = {
-"": SubResource("AnimationLibrary_yv76x")
+&"": SubResource("AnimationLibrary_yv76x")
 }
 
 [node name="sfx_hatch_open" type="AudioStreamPlayer3D" parent="High_room1/Ground/LevelBlock28/Hatch1"]
@@ -736,6 +738,91 @@ material = ExtResource("2_jhrrd")
 texture_sheet = ExtResource("3_ogwbd")
 east_face = 0
 bottom_face = 5
+
+[node name="TestStairsLevel" type="Node3D" parent="High_room1/Ground"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1, 0, 12)
+
+[node name="StartBlock" type="Node3D" parent="High_room1/Ground/TestStairsLevel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+script = ExtResource("1_kie6x")
+material = ExtResource("2_jhrrd")
+texture_sheet = ExtResource("3_ogwbd")
+east_face = 0
+west_face = 0
+top_face = 16
+bottom_face = 10
+
+[node name="EnterBlock" type="Node3D" parent="High_room1/Ground/TestStairsLevel"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+script = ExtResource("1_kie6x")
+material = ExtResource("2_jhrrd")
+texture_sheet = ExtResource("3_ogwbd")
+north_face = 0
+south_face = 0
+top_face = 1
+bottom_face = 11
+
+[node name="DownwardsStairs" type="Area3D" parent="High_room1/Ground/TestStairsLevel/EnterBlock"]
+script = ExtResource("21_dqba7")
+target_level = ExtResource("22_usw5k")
+target_position = Vector3(13, 0, 12)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="High_room1/Ground/TestStairsLevel/EnterBlock/DownwardsStairs"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+shape = SubResource("BoxShape3D_inp66")
+
+[node name="StairDirection" type="Marker3D" parent="High_room1/Ground/TestStairsLevel/EnterBlock/DownwardsStairs"]
+transform = Transform3D(-4.3711395e-08, 0, -1, 0, 1, 0, 1, 0, -4.3711395e-08, 0, 0, 0)
+
+[node name="LevelBlock2" type="Node3D" parent="High_room1/Ground/TestStairsLevel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -2)
+script = ExtResource("1_kie6x")
+material = ExtResource("2_jhrrd")
+texture_sheet = ExtResource("3_ogwbd")
+east_face = 1
+west_face = 0
+bottom_face = 0
+
+[node name="LevelBlock2" type="Node3D" parent="High_room1/Ground/TestStairsLevel/LevelBlock2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+script = ExtResource("1_kie6x")
+material = ExtResource("2_jhrrd")
+texture_sheet = ExtResource("3_ogwbd")
+south_face = 0
+
+[node name="LevelBlock3" type="Node3D" parent="High_room1/Ground/TestStairsLevel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, -4)
+script = ExtResource("1_kie6x")
+material = ExtResource("2_jhrrd")
+texture_sheet = ExtResource("3_ogwbd")
+east_face = 0
+west_face = 0
+bottom_face = 0
+
+[node name="LevelBlock2" type="Node3D" parent="High_room1/Ground/TestStairsLevel/LevelBlock3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+script = ExtResource("1_kie6x")
+material = ExtResource("2_jhrrd")
+texture_sheet = ExtResource("3_ogwbd")
+south_face = 0
+
+[node name="LevelBlock5" type="Node3D" parent="High_room1/Ground/TestStairsLevel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+script = ExtResource("1_kie6x")
+material = ExtResource("2_jhrrd")
+texture_sheet = ExtResource("3_ogwbd")
+east_face = 0
+west_face = 0
+top_face = 5
+
+[node name="LevelBlock6" type="Node3D" parent="High_room1/Ground/TestStairsLevel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+script = ExtResource("1_kie6x")
+material = ExtResource("2_jhrrd")
+texture_sheet = ExtResource("3_ogwbd")
+east_face = 0
+west_face = 0
+top_face = 5
 
 [node name="Collumn" type="Node" parent="High_room1"]
 
@@ -1131,3 +1218,4 @@ west_face = 0
 top_face = 15
 
 [connection signal="body_entered" from="Room1/PickUp" to="Room1/PickUp" method="_on_body_entered"]
+[connection signal="body_entered" from="High_room1/Ground/TestStairsLevel/EnterBlock/DownwardsStairs" to="High_room1/Ground/TestStairsLevel/EnterBlock/DownwardsStairs" method="_on_body_entered"]

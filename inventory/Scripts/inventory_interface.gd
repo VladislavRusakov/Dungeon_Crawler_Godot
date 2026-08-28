@@ -48,7 +48,7 @@ func on_inventory_interact(
 		[_, MOUSE_BUTTON_LEFT]:
 			grabbed_slot_data = inventory_data.drop_slot_data(grabbed_slot_data, index)
 		[null, MOUSE_BUTTON_RIGHT]:
-			pass
+			inventory_data.use_slot_data(index)
 		[_, MOUSE_BUTTON_RIGHT]:
 			grabbed_slot_data = inventory_data.drop_single_slot_data(grabbed_slot_data, index)
 	
@@ -73,7 +73,8 @@ func update_grabbed_slot() -> void:
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton \
 	and event.is_pressed() \
-	and grabbed_slot_data:
+	and grabbed_slot_data \
+	and player.can_drop_item_in_front():
 
 		match event.button_index:
 			MOUSE_BUTTON_LEFT:
@@ -92,3 +93,10 @@ func _on_drop_slot_data(slot_data: SlotData) -> void:
 	pick_up.slot_data = slot_data
 	pick_up.position = player.get_drop_position()
 	add_child(pick_up)
+
+
+func _on_visibility_changed() -> void:
+	if not visible and grabbed_slot_data:
+		drop_slot_data.emit(grabbed_slot_data)
+		grabbed_slot_data = null
+		update_grabbed_slot()

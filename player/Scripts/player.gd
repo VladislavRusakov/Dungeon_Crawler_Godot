@@ -32,14 +32,20 @@ const MAX_ACTIONS_REMEMBER = 3
 
 @onready var camera: Camera3D = $CamPivot/Camera
 
-
+var max_health: int = 9
+var health: int = 5
 var tween
 var move_queue: Array = []
 var is_moving := false
 var is_bump_locked := false
+var is_transitioning := false
+var forced_move_direction: Vector3 = Vector3.ZERO
+var has_forced_move_direction := false
 
 
 func _ready():
+	PlayerManager.player = self
+	
 	add_to_group("player")
 	inventory_interface.set_player_inventory_data(inventory_data)
 
@@ -52,6 +58,9 @@ func play_step_sound():
 
 
 func _physics_process(_delta):
+	if is_transitioning:
+		return
+	
 	if is_moving:
 		_store_direction_input()
 		return
@@ -205,7 +214,17 @@ func _input(event):
 	if event.is_action_pressed("inventory"):
 		toggle_inventory.emit()
 
+func can_drop_item_in_front() -> bool:
+	front_ray.force_raycast_update()
+	return not front_ray.is_colliding()
+
 func get_drop_position() -> Vector3:
-	var direction = -camera.global_transform.basis.z
-	return camera.global_position + direction
-	
+	var direction = -global_transform.basis.z
+	return global_position + direction * 2.0
+
+func heal(heal_value: int) -> void:
+	if health + heal_value <= max_health:
+		health += heal_value
+	else:
+		health = max_health
+	print(health)

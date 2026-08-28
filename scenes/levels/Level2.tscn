@@ -1,94 +1,1211 @@
-[gd_scene load_steps=8 format=3 uid="uid://ct3qpvb7720"]
+[gd_scene load_steps=30 format=3 uid="uid://clqbwa3n2f6s6"]
 
-[ext_resource type="Script" path="res://addons/level_block/level_block_node.gd" id="1_niy0h"]
+[ext_resource type="Script" uid="uid://w2ocjdlf1nqf" path="res://addons/level_block/level_block_node.gd" id="1_niy0h"]
+[ext_resource type="AudioStream" uid="uid://dem5g04txrapc" path="res://sounds/used/map_open.mp3" id="1_nkm7c"]
 [ext_resource type="Material" uid="uid://c71yladfjhgud" path="res://addons/level_block/default_material.tres" id="2_lxfu6"]
-[ext_resource type="Texture2D" uid="uid://bc0ndamtdl1ha" path="res://addons/level_block/set5.png" id="3_n85vi"]
-[ext_resource type="PackedScene" uid="uid://b6n3jg6w3xlkv" path="res://scenes/player/player.tscn" id="4_56lc3"]
-[ext_resource type="Script" path="res://scenes/Scripts/DownwardsStairs.gd" id="5_7r2ix"]
-[ext_resource type="Texture2D" uid="uid://cpvmeicp0mjnv" path="res://addons/level_block/set4.png" id="5_ifvpk"]
+[ext_resource type="AudioStream" uid="uid://dbfpxiuvn4y0r" path="res://sounds/used/map_close.mp3" id="2_uh3oe"]
+[ext_resource type="AudioStream" uid="uid://cgcrh8w4iv8ig" path="res://sounds/used/embient_main.mp3" id="3_4p5gg"]
+[ext_resource type="PackedScene" uid="uid://cr8nbxw3rfokd" path="res://inventory/pickup/pick_up.tscn" id="4_hmwnr"]
+[ext_resource type="Resource" uid="uid://br41pvuf7wcku" path="res://item/items/straight_sword.tres" id="5_4ao78"]
+[ext_resource type="Script" uid="uid://3unih1565d32" path="res://scenes/Scripts/DownwardsStairs.gd" id="5_7r2ix"]
+[ext_resource type="Texture2D" uid="uid://dul4gcwu55m0b" path="res://addons/level_block/example_tileset.png" id="5_twycr"]
+[ext_resource type="Script" uid="uid://c6iv8qbcykk5k" path="res://inventory/slot_data.gd" id="6_pi6sb"]
+[ext_resource type="AudioStream" uid="uid://cynyxpi7b4nf6" path="res://sounds/used/torch.mp3" id="10_8tmga"]
+[ext_resource type="Script" uid="uid://bccb8q5eq8e57" path="res://scenes/Scripts/TorchLight.gd" id="11_eim73"]
+[ext_resource type="AudioStream" uid="uid://dkxau3svj3mfo" path="res://sounds/used/dungeon-air-6983.mp3" id="12_d2rr3"]
+[ext_resource type="AudioStream" uid="uid://dge68jrse4fgo" path="res://sounds/used/droplets-in-a-cave-6785.mp3" id="13_rjd1d"]
+[ext_resource type="Script" uid="uid://dwk0nplgsh5x0" path="res://scenes/Scripts/button.gd" id="14_8n7ay"]
+[ext_resource type="AudioStream" uid="uid://cec0u25irflpo" path="res://sounds/used/stone_button_push.mp3" id="15_o163v"]
+[ext_resource type="PackedScene" uid="uid://d3c0a4bk31tct" path="res://scenes/secret_wall.tscn" id="16_uie84"]
+[ext_resource type="Script" uid="uid://dtok12vnc7cci" path="res://scenes/Scripts/Hatch.gd" id="17_0j73a"]
+[ext_resource type="AudioStream" uid="uid://dmah0mie8m36y" path="res://sounds/used/hatch_opening.mp3" id="18_cco8p"]
+[ext_resource type="Script" uid="uid://b6dif4at2ysbs" path="res://scenes/Scripts/button2.gd" id="19_6vhad"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_inp66"]
+[sub_resource type="Environment" id="Environment_yh1rn"]
+background_mode = 1
+background_color = Color(0.337255, 0.294118, 0.192157, 1)
+background_energy_multiplier = 1.67
+ambient_light_source = 3
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_sky_contribution = 0.0
+ambient_light_energy = 1.68
 
-[node name="TestStairsLevel" type="Node3D"]
+[sub_resource type="Environment" id="Environment_xm8ix"]
+background_mode = 1
 
-[node name="Player" parent="." instance=ExtResource("4_56lc3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+[sub_resource type="Resource" id="Resource_p0oqq"]
+script = ExtResource("6_pi6sb")
+item_data = ExtResource("5_4ao78")
 
-[node name="StartBlock" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+[sub_resource type="BoxShape3D" id="BoxShape3D_k57ar"]
+
+[sub_resource type="Animation" id="Animation_dtaxv"]
+length = 1.6
+
+[sub_resource type="Animation" id="Animation_qww6f"]
+resource_name = "left_hatch_open"
+length = 1.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HatchLeft:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-1, -0.04, 0), Vector3(-2, -0.04, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HatchRight:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1, -0.04, 0), Vector3(2, -0.04, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yv76x"]
+_data = {
+&"RESET": SubResource("Animation_dtaxv"),
+&"hatch_open": SubResource("Animation_qww6f")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_25cea"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uh3oe"]
+
+[node name="Level" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 2)
+
+[node name="Map" type="SubViewportContainer" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="Map"]
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 0
+
+[node name="MapCamera" type="Camera3D" parent="Map/SubViewport"]
+transform = Transform3D(-1, -8.74228e-08, -3.82137e-15, 0, -4.37114e-08, 1, -8.74228e-08, 1, 4.37114e-08, 3, 15, 6)
+cull_mask = 524289
+environment = SubResource("Environment_yh1rn")
+projection = 1
+size = 25.0
+far = 17.97
+
+[node name="sfx_map_open" type="AudioStreamPlayer" parent="Map"]
+stream = ExtResource("1_nkm7c")
+volume_db = -20.0
+bus = &"SFX"
+
+[node name="sfx_map_close" type="AudioStreamPlayer" parent="Map"]
+stream = ExtResource("2_uh3oe")
+volume_db = -20.0
+bus = &"SFX"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_xm8ix")
+
+[node name="WorldEmbient" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_4p5gg")
+volume_db = -10.306
+autoplay = true
+bus = &"SFX"
+
+[node name="Room1" type="Node" parent="."]
+
+[node name="PickUp" parent="Room1" instance=ExtResource("4_hmwnr")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.98885, 0, 0)
+slot_data = SubResource("Resource_p0oqq")
+
+[node name="LevelBlock1" type="Node3D" parent="Room1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -2)
 script = ExtResource("1_niy0h")
 material = ExtResource("2_lxfu6")
-texture_sheet = ExtResource("3_n85vi")
-east_face = 5
+texture_sheet = ExtResource("5_twycr")
+north_face = 0
+east_face = 1
+top_face = 4
+bottom_face = 10
+
+[node name="LevelBlock2" type="Node3D" parent="Room1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+top_face = 4
+bottom_face = 10
+
+[node name="LevelBlock3" type="Node3D" parent="Room1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 2)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+east_face = 0
 south_face = 0
-west_face = 1
-top_face = 3
-bottom_face = 13
+top_face = 4
+bottom_face = 10
 
-[node name="EnterBlock" type="Node3D" parent="."]
+[node name="LevelBlock4" type="Node3D" parent="Room1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -2)
 script = ExtResource("1_niy0h")
 material = ExtResource("2_lxfu6")
-texture_sheet = ExtResource("3_n85vi")
+texture_sheet = ExtResource("5_twycr")
+north_face = 6
+top_face = 4
+bottom_face = 10
+
+[node name="TorchSound" type="AudioStreamPlayer3D" parent="Room1/LevelBlock4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+stream = ExtResource("10_8tmga")
+attenuation_model = 2
+volume_db = -40.19
+autoplay = true
+max_distance = 8.0
+bus = &"SFX"
+
+[node name="TorchLight" type="OmniLight3D" parent="Room1/LevelBlock4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.9)
+light_color = Color(0.839216, 0.380392, 0, 1)
+distance_fade_enabled = true
+distance_fade_begin = 12.0
+distance_fade_shadow = 12.0
+distance_fade_length = 6.0
+omni_range = 3.0
+omni_shadow_mode = 0
+script = ExtResource("11_eim73")
+
+[node name="LevelBlock5" type="Node3D" parent="Room1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+top_face = 4
+bottom_face = 10
+
+[node name="LevelBlock6" type="Node3D" parent="Room1"]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -5, 0, 2)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+north_face = 6
+top_face = 4
+bottom_face = 10
+
+[node name="TorchSound" type="AudioStreamPlayer3D" parent="Room1/LevelBlock6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+stream = ExtResource("10_8tmga")
+attenuation_model = 2
+volume_db = -40.19
+autoplay = true
+max_distance = 8.0
+bus = &"SFX"
+
+[node name="TorchLight" type="OmniLight3D" parent="Room1/LevelBlock6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.9)
+light_color = Color(0.839216, 0.380392, 0, 1)
+distance_fade_enabled = true
+distance_fade_begin = 12.0
+distance_fade_shadow = 12.0
+distance_fade_length = 6.0
+omni_range = 3.0
+omni_shadow_mode = 0
+script = ExtResource("11_eim73")
+
+[node name="LevelBlock7" type="Node3D" parent="Room1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -2)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+north_face = 0
+west_face = 0
+top_face = 4
+bottom_face = 10
+
+[node name="LevelBlock8" type="Node3D" parent="Room1"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7, 0, 0)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+north_face = 6
+top_face = 4
+bottom_face = 10
+
+[node name="TorchSound" type="AudioStreamPlayer3D" parent="Room1/LevelBlock8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+stream = ExtResource("10_8tmga")
+attenuation_model = 2
+volume_db = -40.19
+autoplay = true
+max_distance = 8.0
+bus = &"SFX"
+
+[node name="TorchLight" type="OmniLight3D" parent="Room1/LevelBlock8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.9)
+light_color = Color(0.839216, 0.380392, 0, 1)
+distance_fade_enabled = true
+distance_fade_begin = 12.0
+distance_fade_shadow = 12.0
+distance_fade_length = 6.0
+omni_range = 3.0
+omni_shadow_mode = 0
+script = ExtResource("11_eim73")
+
+[node name="LevelBlock9" type="Node3D" parent="Room1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 2)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+south_face = 0
+west_face = 0
+top_face = 4
+bottom_face = 10
+
+[node name="Corridor1" type="Node" parent="."]
+
+[node name="LevelBlock1" type="Node3D" parent="Corridor1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+north_face = 11
+south_face = 12
+top_face = 4
+bottom_face = 5
+
+[node name="LevelBlock2" type="Node3D" parent="Corridor1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+north_face = 12
+south_face = 11
+bottom_face = 5
+
+[node name="shaft_wind" type="AudioStreamPlayer3D" parent="Corridor1/LevelBlock2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+stream = ExtResource("12_d2rr3")
+attenuation_model = 2
+autoplay = true
+max_distance = 5.0
+bus = &"SFX"
+
+[node name="droplets" type="AudioStreamPlayer3D" parent="Corridor1/LevelBlock2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+stream = ExtResource("13_rjd1d")
+attenuation_model = 2
+volume_db = -36.572
+autoplay = true
+max_distance = 5.0
+bus = &"SFX"
+
+[node name="LevelBlock3" type="Node3D" parent="Corridor1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+north_face = 2
+south_face = 12
+top_face = 4
+bottom_face = 5
+
+[node name="LevelBlock4" type="Node3D" parent="Corridor1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2, 0)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+north_face = 0
+east_face = 0
+south_face = 0
+west_face = 0
+
+[node name="LevelBlock5" type="Node3D" parent="Corridor1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4, 0)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+north_face = 0
+east_face = 0
+south_face = 0
+west_face = 0
+
+[node name="shaft_light" type="SpotLight3D" parent="Corridor1/LevelBlock5"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 2, 0)
+light_energy = 1.768
+light_indirect_energy = 3.0
+spot_range = 8.0
+spot_angle = 25.5019
+
+[node name="Room2" type="Node" parent="."]
+
+[node name="LevelBlock1" type="Node3D" parent="Room2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, -2)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+north_face = 2
+east_face = 0
+top_face = 4
+bottom_face = 5
+
+[node name="LevelBlock2" type="Node3D" parent="Room2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 0)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+east_face = 7
+top_face = 4
+bottom_face = 5
+generate_collision = false
+
+[node name="button1" type="StaticBody3D" parent="Room2/LevelBlock2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+script = ExtResource("14_8n7ay")
+
+[node name="button_collision_shape" type="CollisionShape3D" parent="Room2/LevelBlock2/button1"]
+transform = Transform3D(0.845, 0, 0, 0, 0.845, 0, 0, 0, 0.845, 0.35, 0, 0)
+shape = SubResource("BoxShape3D_k57ar")
+
+[node name="sfx_button_push" type="AudioStreamPlayer3D" parent="Room2/LevelBlock2/button1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+stream = ExtResource("15_o163v")
+attenuation_model = 2
+volume_db = -25.0
+bus = &"SFX"
+
+[node name="LevelBlock3" type="Node3D" parent="Room2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 2)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+east_face = 12
+top_face = 4
+bottom_face = 5
+
+[node name="LevelBlock4" type="Node3D" parent="Room2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -2)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+top_face = 4
+bottom_face = 5
+
+[node name="SecretWall1" parent="Room2/LevelBlock4" instance=ExtResource("16_uie84")]
+
+[node name="LevelBlock5" type="Node3D" parent="Room2"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7, 0, 0)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+north_face = 6
+east_face = 0
+south_face = 0
+west_face = 0
+top_face = 4
+bottom_face = 10
+flip_faces = true
+
+[node name="TorchSound" type="AudioStreamPlayer3D" parent="Room2/LevelBlock5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.74228e-08, 0, 0)
+stream = ExtResource("10_8tmga")
+attenuation_model = 2
+volume_db = -40.19
+autoplay = true
+max_distance = 8.0
+bus = &"SFX"
+
+[node name="TorchLight" type="OmniLight3D" parent="Room2/LevelBlock5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.1)
+light_color = Color(0.839216, 0.380392, 0, 1)
+shadow_enabled = true
+distance_fade_enabled = true
+distance_fade_begin = 12.0
+distance_fade_shadow = 12.0
+distance_fade_length = 6.0
+omni_range = 3.0
+omni_shadow_mode = 0
+script = ExtResource("11_eim73")
+
+[node name="LevelBlock6" type="Node3D" parent="Room2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 2)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+south_face = 0
+top_face = 4
+bottom_face = 5
+
+[node name="LevelBlock7" type="Node3D" parent="Room2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -2)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+north_face = 1
+west_face = 0
+top_face = 4
+bottom_face = 5
+
+[node name="LevelBlock8" type="Node3D" parent="Room2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+top_face = 4
+bottom_face = 5
+
+[node name="LevelBlock9" type="Node3D" parent="Room2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 2)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+south_face = 0
+west_face = 0
+top_face = 4
+bottom_face = 5
+
+[node name="LevelBlock10" type="Node3D" parent="Room2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -4)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+north_face = 5
+east_face = 11
+west_face = 11
+top_face = 10
+bottom_face = 10
+
+[node name="Corridor2" type="Node" parent="."]
+
+[node name="LevelBlock1" type="Node3D" parent="Corridor2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 4)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+east_face = 10
+west_face = 10
+top_face = 4
+bottom_face = 5
+
+[node name="LevelBlock2" type="Node3D" parent="Corridor2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 6)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+east_face = 10
+west_face = 10
+top_face = 4
+bottom_face = 5
+
+[node name="LevelBlock3" type="Node3D" parent="Corridor2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 8)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+east_face = 10
+west_face = 10
+top_face = 4
+bottom_face = 5
+
+[node name="High_room1" type="Node" parent="."]
+
+[node name="Ground" type="Node" parent="High_room1"]
+
+[node name="LevelBlock21" type="Node3D" parent="High_room1/Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 12)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+west_face = 0
+bottom_face = 5
+
+[node name="LevelBlock22" type="Node3D" parent="High_room1/Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 14)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+west_face = 0
+bottom_face = 5
+
+[node name="LevelBlock23" type="Node3D" parent="High_room1/Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 14)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+bottom_face = 5
+
+[node name="LevelBlock24" type="Node3D" parent="High_room1/Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 12)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+bottom_face = 5
+
+[node name="LevelBlock25" type="Node3D" parent="High_room1/Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 10)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+north_face = 0
+bottom_face = 5
+
+[node name="LevelBlock13" type="Node3D" parent="High_room1/Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 10)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+north_face = 0
+west_face = 0
+bottom_face = 5
+
+[node name="LevelBlock18" type="Node3D" parent="High_room1/Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 10)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+north_face = 0
+east_face = 0
+bottom_face = 5
+
+[node name="LevelBlock19" type="Node3D" parent="High_room1/Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 10)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+bottom_face = 5
+
+[node name="LevelBlock26" type="Node3D" parent="High_room1/Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 10)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+north_face = 0
+bottom_face = 5
+
+[node name="LevelBlock27" type="Node3D" parent="High_room1/Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 12)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+bottom_face = 5
+
+[node name="LevelBlock28" type="Node3D" parent="High_room1/Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 14)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+
+[node name="Hatch1" type="Node3D" parent="High_room1/Ground/LevelBlock28"]
+script = ExtResource("17_0j73a")
+
+[node name="HatchLeft" type="Node3D" parent="High_room1/Ground/LevelBlock28/Hatch1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.04, 0)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+bottom_face = 3
+
+[node name="HatchRight" type="Node3D" parent="High_room1/Ground/LevelBlock28/Hatch1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.04, 0)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+bottom_face = 3
+
+[node name="HatchAnimation" type="AnimationPlayer" parent="High_room1/Ground/LevelBlock28/Hatch1"]
+libraries = {
+&"": SubResource("AnimationLibrary_yv76x")
+}
+
+[node name="sfx_hatch_open" type="AudioStreamPlayer3D" parent="High_room1/Ground/LevelBlock28/Hatch1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+stream = ExtResource("18_cco8p")
+attenuation_model = 2
+volume_db = -30.27
+unit_size = 5.0
+bus = &"SFX"
+
+[node name="Shaft1" type="Node3D" parent="High_room1/Ground/LevelBlock28/Hatch1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+north_face = 0
+east_face = 0
+south_face = 0
+west_face = 0
+
+[node name="Shaft2" type="Node3D" parent="High_room1/Ground/LevelBlock28/Hatch1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+north_face = 0
+east_face = 0
+south_face = 0
+west_face = 0
+
+[node name="LevelBlock29" type="Node3D" parent="High_room1/Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 16)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+south_face = 0
+west_face = 0
+bottom_face = 5
+
+[node name="LevelBlock30" type="Node3D" parent="High_room1/Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 16)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+south_face = 0
+bottom_face = 5
+
+[node name="LevelBlock31" type="Node3D" parent="High_room1/Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 16)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+south_face = 7
+bottom_face = 5
+
+[node name="button2" type="StaticBody3D" parent="High_room1/Ground/LevelBlock31"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+script = ExtResource("19_6vhad")
+
+[node name="button_collision_shape" type="CollisionShape3D" parent="High_room1/Ground/LevelBlock31/button2"]
+transform = Transform3D(-0.845, 0, 1.27591e-07, 0, 0.845, 0, -1.27591e-07, 0, -0.845, 0.00500011, 0.03, 0.325001)
+shape = SubResource("BoxShape3D_25cea")
+
+[node name="sfx_button_push" type="AudioStreamPlayer3D" parent="High_room1/Ground/LevelBlock31/button2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+stream = ExtResource("15_o163v")
+attenuation_model = 2
+volume_db = -25.0
+bus = &"SFX"
+
+[node name="LevelBlock32" type="Node3D" parent="High_room1/Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 16)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+south_face = 0
+bottom_face = 5
+
+[node name="LevelBlock33" type="Node3D" parent="High_room1/Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 16)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+east_face = 0
+south_face = 0
+bottom_face = 5
+
+[node name="LevelBlock34" type="Node3D" parent="High_room1/Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 14)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+bottom_face = 5
+
+[node name="LevelBlock37" type="Node3D" parent="High_room1/Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 12)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+bottom_face = 5
+
+[node name="TestStairsLevel" type="Node3D" parent="High_room1/Ground/LevelBlock37"]
+transform = Transform3D(1.3113416e-07, 0, 1, 0, 1, 0, -1, 0, 1.3113416e-07, 6, 2, 0)
+
+[node name="StartBlock" type="Node3D" parent="High_room1/Ground/LevelBlock37/TestStairsLevel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
 east_face = 5
-west_face = 1
-top_face = 3
+west_face = 0
+top_face = 16
 bottom_face = 13
 
-[node name="DownwardsStairs" type="Area3D" parent="EnterBlock"]
+[node name="EnterBlock" type="Node3D" parent="High_room1/Ground/LevelBlock37/TestStairsLevel"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+north_face = 0
+south_face = 0
+top_face = 1
+bottom_face = 11
+
+[node name="DownwardsStairs" type="Area3D" parent="High_room1/Ground/LevelBlock37/TestStairsLevel/EnterBlock"]
 script = ExtResource("5_7r2ix")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="EnterBlock/DownwardsStairs"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="High_room1/Ground/LevelBlock37/TestStairsLevel/EnterBlock/DownwardsStairs"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
-shape = SubResource("BoxShape3D_inp66")
+shape = SubResource("BoxShape3D_uh3oe")
 
-[node name="LevelBlock2" type="Node3D" parent="."]
+[node name="LevelBlock2" type="Node3D" parent="High_room1/Ground/LevelBlock37/TestStairsLevel"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -2)
 script = ExtResource("1_niy0h")
 material = ExtResource("2_lxfu6")
-texture_sheet = ExtResource("3_n85vi")
+texture_sheet = ExtResource("5_twycr")
 east_face = 0
 west_face = 0
-bottom_face = 13
+bottom_face = 0
 
-[node name="LevelBlock2" type="Node3D" parent="LevelBlock2"]
+[node name="LevelBlock2" type="Node3D" parent="High_room1/Ground/LevelBlock37/TestStairsLevel/LevelBlock2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 script = ExtResource("1_niy0h")
 material = ExtResource("2_lxfu6")
-texture_sheet = ExtResource("3_n85vi")
-south_face = 3
+texture_sheet = ExtResource("5_twycr")
+south_face = 0
 
-[node name="LevelBlock3" type="Node3D" parent="."]
+[node name="LevelBlock3" type="Node3D" parent="High_room1/Ground/LevelBlock37/TestStairsLevel"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, -4)
 script = ExtResource("1_niy0h")
 material = ExtResource("2_lxfu6")
-texture_sheet = ExtResource("3_n85vi")
+texture_sheet = ExtResource("5_twycr")
 east_face = 0
 west_face = 0
-bottom_face = 13
+bottom_face = 0
 
-[node name="LevelBlock2" type="Node3D" parent="LevelBlock3"]
+[node name="LevelBlock2" type="Node3D" parent="High_room1/Ground/LevelBlock37/TestStairsLevel/LevelBlock3"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 script = ExtResource("1_niy0h")
 material = ExtResource("2_lxfu6")
-texture_sheet = ExtResource("3_n85vi")
-south_face = 3
+texture_sheet = ExtResource("5_twycr")
+south_face = 0
 
-[node name="LevelBlock5" type="Node3D" parent="."]
+[node name="LevelBlock5" type="Node3D" parent="High_room1/Ground/LevelBlock37/TestStairsLevel"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
 script = ExtResource("1_niy0h")
 material = ExtResource("2_lxfu6")
-texture_sheet = ExtResource("5_ifvpk")
+texture_sheet = ExtResource("5_twycr")
 east_face = 0
 west_face = 0
 top_face = 5
 
-[node name="LevelBlock6" type="Node3D" parent="."]
+[node name="LevelBlock6" type="Node3D" parent="High_room1/Ground/LevelBlock37/TestStairsLevel"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
 script = ExtResource("1_niy0h")
 material = ExtResource("2_lxfu6")
-texture_sheet = ExtResource("5_ifvpk")
+texture_sheet = ExtResource("5_twycr")
 east_face = 0
 west_face = 0
 top_face = 5
 
-[connection signal="body_entered" from="EnterBlock/DownwardsStairs" to="EnterBlock/DownwardsStairs" method="_on_body_entered"]
+[node name="LevelBlock38" type="Node3D" parent="High_room1/Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0, 14)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+east_face = 0
+bottom_face = 5
+
+[node name="Collumn" type="Node" parent="High_room1"]
+
+[node name="LevelBlock1" type="Node3D" parent="High_room1/Collumn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 12)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+north_face = 5
+east_face = 5
+south_face = 5
+west_face = 5
+top_face = 5
+bottom_face = 5
+flip_faces = true
+
+[node name="LevelBlock2" type="Node3D" parent="High_room1/Collumn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 2, 12)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+north_face = 5
+east_face = 5
+south_face = 5
+west_face = 5
+top_face = 5
+bottom_face = 5
+flip_faces = true
+
+[node name="torch_wall" type="Node3D" parent="High_room1/Collumn"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 4, 12)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+north_face = 6
+east_face = 6
+south_face = 6
+west_face = 6
+flip_faces = true
+
+[node name="TorchSound" type="AudioStreamPlayer3D" parent="High_room1/Collumn/torch_wall"]
+stream = ExtResource("10_8tmga")
+attenuation_model = 2
+volume_db = -40.19
+autoplay = true
+max_distance = 8.0
+
+[node name="TorchLight" type="OmniLight3D" parent="High_room1/Collumn/torch_wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.1)
+light_color = Color(0.839216, 0.380392, 0, 1)
+shadow_enabled = true
+distance_fade_enabled = true
+distance_fade_begin = 12.0
+distance_fade_shadow = 12.0
+distance_fade_length = 6.0
+omni_range = 3.0
+omni_shadow_mode = 0
+script = ExtResource("11_eim73")
+
+[node name="TorchLight2" type="OmniLight3D" parent="High_room1/Collumn/torch_wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1, 0, 0)
+light_color = Color(0.839216, 0.380392, 0, 1)
+shadow_enabled = true
+distance_fade_enabled = true
+distance_fade_begin = 12.0
+distance_fade_shadow = 12.0
+distance_fade_length = 6.0
+omni_range = 3.0
+omni_shadow_mode = 0
+script = ExtResource("11_eim73")
+
+[node name="TorchLight3" type="OmniLight3D" parent="High_room1/Collumn/torch_wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.1)
+light_color = Color(0.839216, 0.380392, 0, 1)
+shadow_enabled = true
+distance_fade_enabled = true
+distance_fade_begin = 12.0
+distance_fade_shadow = 12.0
+distance_fade_length = 6.0
+omni_range = 3.0
+omni_shadow_mode = 0
+script = ExtResource("11_eim73")
+
+[node name="TorchLight4" type="OmniLight3D" parent="High_room1/Collumn/torch_wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, 0, 0)
+light_color = Color(0.839216, 0.380392, 0, 1)
+shadow_enabled = true
+distance_fade_enabled = true
+distance_fade_begin = 12.0
+distance_fade_shadow = 12.0
+distance_fade_length = 6.0
+omni_range = 3.0
+omni_shadow_mode = 0
+script = ExtResource("11_eim73")
+
+[node name="Level1" type="Node" parent="High_room1"]
+
+[node name="LevelBlock1" type="Node3D" parent="High_room1/Level1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 2, 10)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+north_face = 0
+east_face = 0
+
+[node name="LevelBlock2" type="Node3D" parent="High_room1/Level1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 2, 12)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+east_face = 0
+
+[node name="LevelBlock3" type="Node3D" parent="High_room1/Level1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 2, 14)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+east_face = 0
+
+[node name="LevelBlock4" type="Node3D" parent="High_room1/Level1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 2, 16)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+east_face = 0
+south_face = 0
+
+[node name="LevelBlock5" type="Node3D" parent="High_room1/Level1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 2, 10)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+north_face = 0
+
+[node name="LevelBlock6" type="Node3D" parent="High_room1/Level1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 2, 16)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+south_face = 0
+
+[node name="LevelBlock7" type="Node3D" parent="High_room1/Level1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 2, 10)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+north_face = 0
+
+[node name="LevelBlock8" type="Node3D" parent="High_room1/Level1"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 9, 2, 16)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+east_face = 6
+
+[node name="TorchSound" type="AudioStreamPlayer3D" parent="High_room1/Level1/LevelBlock8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+stream = ExtResource("10_8tmga")
+attenuation_model = 2
+volume_db = -40.19
+autoplay = true
+max_distance = 8.0
+bus = &"SFX"
+
+[node name="TorchLight" type="OmniLight3D" parent="High_room1/Level1/LevelBlock8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0, 0)
+light_color = Color(0.839216, 0.380392, 0, 1)
+shadow_enabled = true
+distance_fade_enabled = true
+distance_fade_begin = 12.0
+distance_fade_shadow = 12.0
+distance_fade_length = 6.0
+omni_range = 3.0
+omni_shadow_mode = 0
+script = ExtResource("11_eim73")
+
+[node name="LevelBlock9" type="Node3D" parent="High_room1/Level1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 2, 10)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+north_face = 0
+
+[node name="LevelBlock10" type="Node3D" parent="High_room1/Level1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 2, 16)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+south_face = 0
+
+[node name="LevelBlock11" type="Node3D" parent="High_room1/Level1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2, 10)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+north_face = 0
+west_face = 0
+
+[node name="LevelBlock12" type="Node3D" parent="High_room1/Level1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2, 12)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+west_face = 0
+
+[node name="LevelBlock14" type="Node3D" parent="High_room1/Level1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2, 16)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+south_face = 0
+west_face = 0
+
+[node name="LevelBlock13" type="Node3D" parent="High_room1/Level1"]
+transform = Transform3D(-1, 0, 1.50996e-07, 0, 1, 0, -1.50996e-07, 0, -1, 5, 2, 14)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+east_face = 6
+
+[node name="TorchSound" type="AudioStreamPlayer3D" parent="High_room1/Level1/LevelBlock13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+stream = ExtResource("10_8tmga")
+attenuation_model = 2
+volume_db = -40.19
+autoplay = true
+max_distance = 8.0
+bus = &"SFX"
+
+[node name="TorchLight" type="OmniLight3D" parent="High_room1/Level1/LevelBlock13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0, 0)
+light_color = Color(0.839216, 0.380392, 0, 1)
+shadow_enabled = true
+distance_fade_enabled = true
+distance_fade_begin = 12.0
+distance_fade_shadow = 12.0
+distance_fade_length = 6.0
+omni_range = 3.0
+omni_shadow_mode = 0
+script = ExtResource("11_eim73")
+
+[node name="Top Level" type="Node" parent="High_room1"]
+
+[node name="LevelBlock1" type="Node3D" parent="High_room1/Top Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 4, 10)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+north_face = 0
+east_face = 0
+top_face = 15
+
+[node name="LevelBlock2" type="Node3D" parent="High_room1/Top Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 4, 12)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+east_face = 0
+top_face = 15
+
+[node name="LevelBlock3" type="Node3D" parent="High_room1/Top Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 4, 14)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+east_face = 0
+top_face = 15
+
+[node name="LevelBlock4" type="Node3D" parent="High_room1/Top Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 4, 16)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+east_face = 0
+south_face = 0
+top_face = 15
+
+[node name="LevelBlock5" type="Node3D" parent="High_room1/Top Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 4, 10)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+north_face = 0
+top_face = 15
+
+[node name="LevelBlock6" type="Node3D" parent="High_room1/Top Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 4, 12)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+top_face = 15
+
+[node name="LevelBlock7" type="Node3D" parent="High_room1/Top Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 4, 14)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+top_face = 15
+
+[node name="LevelBlock8" type="Node3D" parent="High_room1/Top Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 4, 16)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+south_face = 0
+top_face = 15
+
+[node name="LevelBlock9" type="Node3D" parent="High_room1/Top Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 4, 10)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+north_face = 0
+top_face = 15
+
+[node name="LevelBlock10" type="Node3D" parent="High_room1/Top Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 4, 14)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+top_face = 15
+
+[node name="LevelBlock11" type="Node3D" parent="High_room1/Top Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 4, 16)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+south_face = 0
+top_face = 15
+
+[node name="LevelBlock12" type="Node3D" parent="High_room1/Top Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 4, 10)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+north_face = 0
+top_face = 15
+
+[node name="LevelBlock13" type="Node3D" parent="High_room1/Top Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 4, 12)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+top_face = 15
+
+[node name="LevelBlock14" type="Node3D" parent="High_room1/Top Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 4, 14)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+top_face = 15
+
+[node name="LevelBlock15" type="Node3D" parent="High_room1/Top Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 4, 16)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+south_face = 0
+top_face = 15
+
+[node name="LevelBlock16" type="Node3D" parent="High_room1/Top Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 4, 10)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+north_face = 0
+west_face = 0
+top_face = 15
+
+[node name="LevelBlock17" type="Node3D" parent="High_room1/Top Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 4, 12)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+west_face = 0
+top_face = 15
+
+[node name="LevelBlock18" type="Node3D" parent="High_room1/Top Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 4, 14)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+west_face = 0
+top_face = 15
+
+[node name="LevelBlock19" type="Node3D" parent="High_room1/Top Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 4, 16)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+south_face = 0
+west_face = 0
+top_face = 15
+
+[connection signal="body_entered" from="Room1/PickUp" to="Room1/PickUp" method="_on_body_entered"]
+[connection signal="body_entered" from="High_room1/Ground/LevelBlock37/TestStairsLevel/EnterBlock/DownwardsStairs" to="High_room1/Ground/LevelBlock37/TestStairsLevel/EnterBlock/DownwardsStairs" method="_on_body_entered"]

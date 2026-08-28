@@ -14,6 +14,10 @@ config/name="Dungeon Crawler"
 run/main_scene="res://scenes/levels/Level1.tscn"
 config/features=PackedStringArray("4.5", "Forward Plus")
 
+[autoload]
+
+PlayerManager="*res://player/Scripts/player_manager.gd"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/level_block/plugin.cfg")

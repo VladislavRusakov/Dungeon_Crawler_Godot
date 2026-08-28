@@ -1,0 +1,99 @@
+[gd_scene load_steps=8 format=3 uid="uid://ct3qpvb7720"]
+
+[ext_resource type="Script" uid="uid://w2ocjdlf1nqf" path="res://addons/level_block/level_block_node.gd" id="1_niy0h"]
+[ext_resource type="Material" uid="uid://c71yladfjhgud" path="res://addons/level_block/default_material.tres" id="2_lxfu6"]
+[ext_resource type="PackedScene" uid="uid://b6n3jg6w3xlkv" path="res://player/player.tscn" id="4_56lc3"]
+[ext_resource type="Script" uid="uid://3unih1565d32" path="res://scenes/Scripts/DownwardsStairs.gd" id="5_7r2ix"]
+[ext_resource type="Texture2D" uid="uid://dul4gcwu55m0b" path="res://addons/level_block/example_tileset.png" id="5_twycr"]
+[ext_resource type="PackedScene" uid="uid://bn42e1ap7mw63" path="res://scenes/levels/Level1.tscn" id="6_4o547"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_inp66"]
+
+[node name="TestStairsLevel" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("4_56lc3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="StartBlock" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+east_face = 5
+west_face = 0
+top_face = 16
+bottom_face = 13
+
+[node name="EnterBlock" type="Node3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+north_face = 0
+south_face = 0
+top_face = 1
+bottom_face = 11
+
+[node name="DownwardsStairs" type="Area3D" parent="EnterBlock"]
+script = ExtResource("5_7r2ix")
+target_level = ExtResource("6_4o547")
+target_position = Vector3(-10, 0, -2)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EnterBlock/DownwardsStairs"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+shape = SubResource("BoxShape3D_inp66")
+
+[node name="LevelBlock2" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -2)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+east_face = 0
+west_face = 0
+bottom_face = 0
+
+[node name="LevelBlock2" type="Node3D" parent="LevelBlock2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+south_face = 0
+
+[node name="LevelBlock3" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, -4)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+east_face = 0
+west_face = 0
+bottom_face = 0
+
+[node name="LevelBlock2" type="Node3D" parent="LevelBlock3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+south_face = 0
+
+[node name="LevelBlock5" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+east_face = 0
+west_face = 0
+top_face = 5
+
+[node name="LevelBlock6" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+script = ExtResource("1_niy0h")
+material = ExtResource("2_lxfu6")
+texture_sheet = ExtResource("5_twycr")
+east_face = 0
+west_face = 0
+top_face = 5
+
+[node name="StairDirection" type="Marker3D" parent="."]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+
+[connection signal="body_entered" from="EnterBlock/DownwardsStairs" to="EnterBlock/DownwardsStairs" method="_on_body_entered"]
